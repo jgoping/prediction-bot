@@ -1,0 +1,23 @@
+{
+  "name": "prediction-bot",
+  "version": "1.0.0",
+  "description": "Prediction bot for Discord written in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgoping/prediction-bot.git"
+  },
+  "author": "Justin Goping",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jgoping/prediction-bot/issues"
+  },
+  "homepage": "https://github.com/jgoping/prediction-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
