@@ -4,6 +4,7 @@ module.exports = {
   Leaderboard: require('./general/leaderboard'),
   Predict: require('./general/predict'),
   Question: require('./admin/question'),
+  Refund: require('./admin/refund'),
   Result: require('./admin/result'),
   Register: require('./general/register'),
 };
