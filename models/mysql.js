@@ -12,6 +12,17 @@ class MySQLModel {
 
     this.query = util.promisify(this.db.query).bind(this.db);
   };
+
+  async getPoints(id) {
+    const pointsQuery = `SELECT points FROM users WHERE id = ${id}`;
+    const data = await this.query(pointsQuery);
+
+    if (data.length !== 1) {
+      throw new Error('Invalid ID');
+    }
+
+    return data[0].points;
+  };
 };
 
 module.exports = {
