@@ -1,3 +1,3 @@
 module.exports = {
-  Register: require('./register'),
+  Register: require('./general/register'),
 };
