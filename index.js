@@ -18,6 +18,8 @@ db.connect((err) => {
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 const botCommands = require('./commands');
+const adminCommands = ['!close', '!question', '!refund', '!result'];
+const modList = ['XXXXXXXX', 'XXXXXXXX']; // Input Discord user IDs
 
 const predictions = {open: false, yes: [], no: []};
 
@@ -32,6 +34,11 @@ bot.on('message', async (msg) => {
   const command = args.shift().toLowerCase();
 
   if (!bot.commands.has(command)) return;
+
+  if (adminCommands.includes(command) && !modList.includes(msg.author.id)) {
+    msg.reply('you are not authorized to execute this command.');
+    return;
+  }
 
   try {
     bot.commands.get(command).execute(msg, args, db, predictions);
