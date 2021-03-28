@@ -1,3 +1,5 @@
+const config = require('../../config.json');
+
 module.exports = {
   name: '!predict',
   description: 'Use points to make a prediction',
@@ -28,8 +30,8 @@ module.exports = {
     } else if (bet <= 0) {
       msg.reply('please enter a positive number.');
       return;
-    } else if (bet > 250000) {
-      msg.reply('max bet size is 250,000.');
+    } else if (bet > config.MAX_BET) {
+      msg.reply(`max bet size is ${config.MAX_BET}.`);
       return;
     }
 

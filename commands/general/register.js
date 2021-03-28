@@ -1,3 +1,5 @@
+const config = require('../../config.json');
+
 module.exports = {
   name: '!register',
   description: 'Registers a user',
@@ -11,11 +13,11 @@ module.exports = {
       if (userExists) {
         msg.reply('it appears you have already registered!');
       } else {
-        const insertQuery = `INSERT INTO users VALUES (${msg.author.id}, '${msg.author.username}', 300)`;
+        const insertQuery = `INSERT INTO users VALUES (${msg.author.id}, '${msg.author.username}', ${config.INITIAL_BALANCE})`;
         db.query(insertQuery, (err) => {
           if (err) throw err;
         });
-        msg.reply('thanks for registering! You will start with 300 points!');
+        msg.reply(`thanks for registering! You will start with ${config.INITIAL_BALANCE} points!`);
       }
     });
   }
