@@ -23,6 +23,13 @@ class MySQLModel {
 
     return data[0].points;
   };
+
+  async getLeaderboard() {
+    const leaderboardQuery = `SELECT username, points FROM users ORDER BY points DESC`;
+    const data = await this.query(leaderboardQuery);
+
+    return data;
+  }
 };
 
 module.exports = {
