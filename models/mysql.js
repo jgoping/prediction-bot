@@ -22,7 +22,11 @@ class MySQLModel {
     }
 
     return data[0].points;
-  };
+
+  async setPoints(id, balance) {
+    const setQuery = `UPDATE users SET points = ${balance} WHERE id = ${id};`
+    await this.query(setQuery);
+  }
 
   async getLeaderboard() {
     const leaderboardQuery = `SELECT username, points FROM users ORDER BY points DESC`;
