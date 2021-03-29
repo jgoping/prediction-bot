@@ -1,3 +1,5 @@
+const config = require('../config.json');
+
 const mysql = require('mysql');
 const util = require('util');
 
@@ -6,7 +8,7 @@ class MySQLModel {
     this.db = mysql.createConnection({
       host: 'localhost',
       user: 'root',
-      password: 'XXXXXXXX',
+      password: config.DB_PASSWORD,
       database: 'predictions'
     });
 
