@@ -11,33 +11,34 @@ class MySQLModel {
     });
 
     this.query = util.promisify(this.db.query).bind(this.db);
-  };
+  }
 
   async getPoints(id) {
-    const pointsQuery = `SELECT points FROM users WHERE id = ${id}`;
-    const data = await this.query(pointsQuery);
+    const query = `SELECT points FROM users WHERE id = ${id}`;
+    const data = await this.query(query);
 
     if (data.length !== 1) {
       throw new Error('Invalid ID');
     }
 
     return data[0].points;
+  }
 
   async setPoints(id, balance) {
-    const setQuery = `UPDATE users SET points = ${balance} WHERE id = ${id};`
-    await this.query(setQuery);
+    const query = `UPDATE users SET points = ${balance} WHERE id = ${id};`
+    await this.query(query);
   }
 
   async getLeaderboard() {
-    const leaderboardQuery = `SELECT username, points FROM users ORDER BY points DESC`;
-    const data = await this.query(leaderboardQuery);
+    const query = `SELECT username, points FROM users ORDER BY points DESC`;
+    const data = await this.query(query);
 
     return data;
   }
 
   async setUser(id, username, balance) {
-    const insertQuery = `INSERT INTO users VALUES (${id}, '${username}', ${balance})`;
-    await this.query(insertQuery);
+    const query = `INSERT INTO users VALUES (${id}, '${username}', ${balance})`;
+    await this.query(query);
   }
 };
 
