@@ -34,6 +34,11 @@ class MySQLModel {
 
     return data;
   }
+
+  async setUser(id, username, balance) {
+    const insertQuery = `INSERT INTO users VALUES (${id}, '${username}', ${balance})`;
+    await this.query(insertQuery);
+  }
 };
 
 module.exports = {
