@@ -1,22 +1,11 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-const mysql = require('mysql');
-
-
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'XXXXXXXX',
-  database: 'predictions'
-});
-
-db.connect((err) => {
-  if (err) throw err;
-  console.log('Connected to MySQL');
-});
+const Model = require('./models/mysql').model;
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
+const model = new Model();
+
 const botCommands = require('./commands');
 const adminCommands = ['!close', '!question', '!refund', '!result'];
 
@@ -33,14 +22,14 @@ bot.on('message', async (msg) => {
   const command = args.shift().toLowerCase();
 
   if (!bot.commands.has(command)) return;
-
+  
   if (adminCommands.includes(command) && !config.MOD_LIST.includes(msg.author.id)) {
     msg.reply('you are not authorized to execute this command.');
     return;
   }
 
   try {
-    bot.commands.get(command).execute(msg, args, db, predictions);
+    bot.commands.get(command).execute(msg, args, model, predictions);
   } catch (error) {
     console.error(error);
     msg.reply('There was an error trying to execute that command.');

@@ -12,6 +12,11 @@ class MySQLModel {
       database: 'predictions'
     });
 
+    this.db.connect((err) => {
+      if (err) throw err;
+      console.log('Connected to MySQL');
+    });
+
     this.query = util.promisify(this.db.query).bind(this.db);
   }
 
