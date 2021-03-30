@@ -20,6 +20,13 @@ class MySQLModel {
     this.query = util.promisify(this.db.query).bind(this.db);
   }
 
+  async isRegistered(id) {
+    const query = `SELECT id FROM users WHERE id = ${id}`;
+    const data = await this.query(query);
+
+    return data.length > 0;
+  }
+
   async getPoints(id) {
     const query = `SELECT points FROM users WHERE id = ${id}`;
     const data = await this.query(query);
