@@ -27,6 +27,22 @@ class MySQLModel {
     return data.length > 0;
   }
 
+  async getUser(id) {
+    const query = `SELECT username, points FROM users WHERE id = ${id}`;
+    const data = await this.query(query);
+
+    if (data.length !== 1) {
+      throw new Error('Invalid ID');
+    }
+
+    return data[0];
+  }
+
+  async setUser(id, username, balance) {
+    const query = `INSERT INTO users VALUES (${id}, '${username}', ${balance})`;
+    await this.query(query);
+  }
+
   async getPoints(id) {
     const query = `SELECT points FROM users WHERE id = ${id}`;
     const data = await this.query(query);
@@ -48,11 +64,6 @@ class MySQLModel {
     const data = await this.query(query);
 
     return data;
-  }
-
-  async setUser(id, username, balance) {
-    const query = `INSERT INTO users VALUES (${id}, '${username}', ${balance})`;
-    await this.query(query);
   }
 };
 
