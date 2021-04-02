@@ -12,6 +12,8 @@ const result = async (msg, args, model, predictions) => {
     return;
   }
 
+  msg.channel.send(`The prediction result is: ${outcome}!`);
+
   for (const prediction of predictions[outcome]) {
     const user = await model.getUser(prediction.id);
     const newBalance = user.points + (prediction.amount*2);
