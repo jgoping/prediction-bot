@@ -7,7 +7,7 @@ const result = async (msg, args, model, predictions) => {
 
   const outcome = args[0].toLowerCase();
 
-  if (!validOutcomes.includes(outcome.toLowerCase())) {
+  if (!validOutcomes.includes(outcome)) {
     msg.reply('please specify yes or no as an outcome.');
     return;
   }
