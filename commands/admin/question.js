@@ -1,8 +1,8 @@
-const startPrediction = async (msg, args, _model, state) => {
+const openPredictions = async (msg, args, _model, state) => {
   const question = args.join(' ');
-  msg.channel.send(`Prediction started! ${question}`);
+  msg.channel.send(`Predictions opened! ${question}`);
 
-  state.open = true;
+  state.openPredictions();
   state.yes = [];
   state.no = [];
 }
@@ -10,5 +10,5 @@ const startPrediction = async (msg, args, _model, state) => {
 module.exports = {
   name: '!question',
   description: 'Ask a question to predict on',
-  execute: startPrediction
+  execute: openPredictions
 };

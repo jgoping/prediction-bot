@@ -4,6 +4,10 @@ class State {
     this.yes = [];
     this.no = [];
   }
+
+  openPredictions() {
+    this.open = true;
+  }
 };
 
 module.exports = {
