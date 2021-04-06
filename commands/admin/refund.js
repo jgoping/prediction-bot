@@ -1,11 +1,11 @@
-const refund = async (msg, _args, model, predictions) => {
+const refund = async (msg, _args, model, state) => {
   const validOutcomes = ['yes', 'no'];
 
   msg.channel.send('The prediction is cancelled and the points have been refunded.');
-  predictions.open = false;
+  state.open = false;
   
   for (const outcome of validOutcomes) {
-    for (const prediction of predictions[outcome]) {
+    for (const prediction of state[outcome]) {
       const points = await model.getPoints(prediction.id);
       const newBalance = points + prediction.amount;
       

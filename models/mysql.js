@@ -69,4 +69,4 @@ class MySQLModel {
 
 module.exports = {
   model: MySQLModel
-}
+};

@@ -1,7 +1,7 @@
 const config = require('../../config.json');
 
-const makePrediction = async (msg, args, model, predictions) => {
-  if (!predictions.open) {
+const makePrediction = async (msg, args, model, state) => {
+  if (!state.open) {
     msg.reply('predictions are closed at the moment.');
     return;
   }
@@ -45,7 +45,7 @@ const makePrediction = async (msg, args, model, predictions) => {
     return;
   }
 
-  predictions[outcome].push({id: msg.author.id, amount: bet});
+  state[outcome].push({id: msg.author.id, amount: bet});
 
   const newBalance = balance - bet;
   

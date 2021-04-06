@@ -1,4 +1,4 @@
-const getBalance = async (msg, _args, model, _predictions) => {
+const getBalance = async (msg, _args, model, _state) => {
   try {
     const points = await model.getPoints(msg.author.id);
     msg.reply(`you currently have ${points} points.`);

@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
 const Model = require('./models/mysql').model;
+const State = require('./state').state;
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -9,7 +10,7 @@ const model = new Model();
 const botCommands = require('./commands');
 const adminCommands = ['!close', '!question', '!refund', '!result'];
 
-const predictions = {open: false, yes: [], no: []};
+const state = new State();
 
 Object.keys(botCommands).map(key => {
   bot.commands.set(botCommands[key].name, botCommands[key]);
@@ -29,7 +30,7 @@ bot.on('message', async (msg) => {
   }
 
   try {
-    bot.commands.get(command).execute(msg, args, model, predictions);
+    bot.commands.get(command).execute(msg, args, model, state);
   } catch (error) {
     console.error(error);
     msg.reply('There was an error trying to execute that command.');

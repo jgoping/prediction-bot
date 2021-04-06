@@ -1,4 +1,4 @@
-const getLeaderboard = async (msg, _args, model, _predictions) => {
+const getLeaderboard = async (msg, _args, model, _state) => {
   let output = 'Leaderboard:';
 
   const leaderboard = await model.getLeaderboard();
