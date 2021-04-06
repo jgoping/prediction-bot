@@ -1,4 +1,9 @@
 const result = async (msg, args, model, state) => {
+  if (!state.isOpen()) {
+    msg.reply('predictions are closed at the moment.');
+    return;
+  }
+  
   if (args.length < 1) {
     msg.reply('please specify an outcome.');
     return;
@@ -15,6 +20,8 @@ const result = async (msg, args, model, state) => {
   }
 
   msg.channel.send(`The prediction result is: ${outcome}!`);
+
+  state.closePredictions();
 
   for (const prediction of predictions) {
     const user = await model.getUser(prediction.id);

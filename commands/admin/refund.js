@@ -1,4 +1,9 @@
 const refund = async (msg, _args, model, state) => {
+  if (!state.isOpen()) {
+    msg.reply('predictions are closed at the moment.');
+    return;
+  }
+  
   const validOutcomes = ['yes', 'no'];
 
   msg.channel.send('The prediction is cancelled and the points have been refunded.');
