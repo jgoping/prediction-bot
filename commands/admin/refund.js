@@ -12,6 +12,8 @@ const refund = async (msg, _args, model, state) => {
       await model.setPoints(prediction.id, newBalance);
     };
   };
+
+  state.clearPredictions();
 }
 
 module.exports = {

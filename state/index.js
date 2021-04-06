@@ -16,6 +16,11 @@ class State {
   isOpen() {
     return this.open;
   }
+
+  clearPredictions() {
+    this.yes = [];
+    this.no = [];
+  }
 };
 
 module.exports = {

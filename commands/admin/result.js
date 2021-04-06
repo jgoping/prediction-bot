@@ -21,6 +21,8 @@ const result = async (msg, args, model, state) => {
     await model.setPoints(prediction.id, newBalance);
     msg.channel.send(`${user.username} has won and now has ${newBalance} points!`);
   }
+
+  state.clearPredictions();
 }
 
 module.exports = {
