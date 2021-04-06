@@ -27,6 +27,14 @@ class State {
     this[outcome].push({id, amount});
   }
 
+  getPredictions(outcome) {
+    if (!validOutcomes.includes(outcome)) {
+      throw new Error('please specify yes or no as an outcome.');
+    }
+
+    return this[outcome];
+  }
+
   clearPredictions() {
     this.yes = [];
     this.no = [];

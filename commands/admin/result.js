@@ -1,5 +1,4 @@
 const result = async (msg, args, model, state) => {
-  const validOutcomes = ['yes', 'no'];
   if (args.length < 1) {
     msg.reply('please specify an outcome.');
     return;
@@ -7,14 +6,17 @@ const result = async (msg, args, model, state) => {
 
   const outcome = args[0].toLowerCase();
 
-  if (!validOutcomes.includes(outcome)) {
-    msg.reply('please specify yes or no as an outcome.');
+  let predictions;
+  try {
+    predictions = state.getPredictions(outcome);
+  } catch (error) {
+    msg.reply(error.message);
     return;
   }
 
   msg.channel.send(`The prediction result is: ${outcome}!`);
 
-  for (const prediction of state[outcome]) {
+  for (const prediction of predictions) {
     const user = await model.getUser(prediction.id);
     const newBalance = user.points + (prediction.amount*2);
 
