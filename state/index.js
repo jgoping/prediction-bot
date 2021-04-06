@@ -28,11 +28,15 @@ class State {
   }
 
   getPredictions(outcome) {
-    if (!validOutcomes.includes(outcome)) {
+    if (outcome && !validOutcomes.includes(outcome)) {
       throw new Error('please specify yes or no as an outcome.');
     }
 
-    return this[outcome];
+    if (outcome) {
+      return this[outcome];
+    }
+
+    return [...this.yes, ...this.no];
   }
 
   clearPredictions() {

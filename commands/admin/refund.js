@@ -3,19 +3,17 @@ const refund = async (msg, _args, model, state) => {
     msg.reply('predictions are closed at the moment.');
     return;
   }
-  
-  const validOutcomes = ['yes', 'no'];
 
   msg.channel.send('The prediction is cancelled and the points have been refunded.');
   state.closePredictions();
+
+  const predictions = state.getPredictions();
   
-  for (const outcome of validOutcomes) {
-    for (const prediction of state[outcome]) {
-      const points = await model.getPoints(prediction.id);
-      const newBalance = points + prediction.amount;
-      
-      await model.setPoints(prediction.id, newBalance);
-    };
+  for (const prediction of predictions) {
+    const points = await model.getPoints(prediction.id);
+    const newBalance = points + prediction.amount;
+    
+    await model.setPoints(prediction.id, newBalance);
   };
 
   state.clearPredictions();
