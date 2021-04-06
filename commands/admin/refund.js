@@ -2,7 +2,7 @@ const refund = async (msg, _args, model, state) => {
   const validOutcomes = ['yes', 'no'];
 
   msg.channel.send('The prediction is cancelled and the points have been refunded.');
-  state.open = false;
+  state.closePredictions();
   
   for (const outcome of validOutcomes) {
     for (const prediction of state[outcome]) {
