@@ -12,6 +12,10 @@ class State {
   closePredictions() {
     this.open = false;
   }
+
+  isOpen() {
+    return this.open;
+  }
 };
 
 module.exports = {

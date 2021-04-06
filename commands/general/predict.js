@@ -1,7 +1,7 @@
 const config = require('../../config.json');
 
 const makePrediction = async (msg, args, model, state) => {
-  if (!state.open) {
+  if (!state.isOpen()) {
     msg.reply('predictions are closed at the moment.');
     return;
   }
