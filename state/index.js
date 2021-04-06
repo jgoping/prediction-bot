@@ -1,3 +1,5 @@
+const validOutcomes = ['yes', 'no'];
+
 class State {
   constructor() {
     this.open = false;
@@ -15,6 +17,14 @@ class State {
 
   isOpen() {
     return this.open;
+  }
+
+  addPrediction(id, outcome, amount) {
+    if (!validOutcomes.includes(outcome)) {
+      throw new Error('please specify yes or no as an outcome.');
+    }
+
+    this[outcome].push({id, amount});
   }
 
   clearPredictions() {

@@ -6,7 +6,6 @@ const makePrediction = async (msg, args, model, state) => {
     return;
   }
 
-  const validOutcomes = ['yes', 'no'];
   if (args.length < 1) {
     msg.reply('please specify an outcome.');
     return;
@@ -17,11 +16,8 @@ const makePrediction = async (msg, args, model, state) => {
 
   const outcome = args[0].toLowerCase();
   const bet = parseInt(args[1]);
-
-  if (!validOutcomes.includes(outcome.toLowerCase())) {
-    msg.reply('please specify yes or no as an outcome.');
-    return;
-  } else if (isNaN(bet)) {
+  
+  if (isNaN(bet)) {
     msg.reply('please provide an integer for how many points you will bet.');
     return;
   } else if (bet <= 0) {
@@ -45,7 +41,12 @@ const makePrediction = async (msg, args, model, state) => {
     return;
   }
 
-  state[outcome].push({id: msg.author.id, amount: bet});
+  try {
+    state.addPrediction(msg.author.id, outcome, bet);
+  } catch (error) {
+    msg.reply(error.message);
+    return;
+  }
 
   const newBalance = balance - bet;
   
