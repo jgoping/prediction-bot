@@ -37,5 +37,6 @@ const result = async (msg, args, model, state) => {
 module.exports = {
   name: '!result',
   description: 'Submit the result of the prediction',
+  adminRequired: true,
   execute: result
 };

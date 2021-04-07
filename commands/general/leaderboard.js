@@ -12,5 +12,6 @@ const getLeaderboard = async (msg, _args, model, _state) => {
 module.exports = {
   name: '!leaderboard',
   description: 'See the top-scoring users',
+  adminRequired: false,
   execute: getLeaderboard,
 };

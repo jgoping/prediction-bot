@@ -57,5 +57,6 @@ const makePrediction = async (msg, args, model, state) => {
 module.exports = {
   name: '!predict',
   description: 'Use points to make a prediction',
+  adminRequired: false,
   execute: makePrediction
 };

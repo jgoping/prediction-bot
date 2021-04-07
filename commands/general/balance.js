@@ -10,5 +10,6 @@ const getBalance = async (msg, _args, model, _state) => {
 module.exports = {
   name: '!balance',
   description: 'Check the amount of points a user has',
+  adminRequired: false,
   execute: getBalance
 };

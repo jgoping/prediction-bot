@@ -22,5 +22,6 @@ const refund = async (msg, _args, model, state) => {
 module.exports = {
   name: '!refund',
   description: 'Refund the points in the current prediction',
+  adminRequired: true,
   execute: refund
 };

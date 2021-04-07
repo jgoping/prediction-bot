@@ -13,5 +13,6 @@ const openPredictions = async (msg, args, _model, state) => {
 module.exports = {
   name: '!question',
   description: 'Ask a question to predict on',
+  adminRequired: true,
   execute: openPredictions
 };

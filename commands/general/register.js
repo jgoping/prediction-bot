@@ -14,5 +14,6 @@ const register = async (msg, _args, model, _state) => {
 module.exports = {
   name: '!register',
   description: 'Registers a user',
+  adminRequired: false,
   execute: register
 };

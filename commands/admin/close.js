@@ -6,5 +6,6 @@ const closePredictions = async (msg, _args, _model, state) => {
 module.exports = {
   name: '!close',
   description: 'Close the predictions and wait for result',
+  adminRequired: true,
   execute: closePredictions
 };
