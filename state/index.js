@@ -24,6 +24,12 @@ class State {
       throw new Error('please specify yes or no as an outcome.');
     }
 
+    const otherOutcome = validOutcomes[(validOutcomes.indexOf(outcome) + 1) % 2];
+
+    if (this[otherOutcome].has(id)) {
+      throw new Error(`you cannot vote on ${outcome} as you have already voted on ${otherOutcome}.`);
+    }
+
     const newAmount = this[outcome].has(id) ? this[outcome].get(id).amount + amount : amount;
 
     this[outcome].set(id, {id, amount: newAmount});
