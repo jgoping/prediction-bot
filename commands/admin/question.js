@@ -1,6 +1,6 @@
 const openPredictions = async (msg, args, _model, state) => {
-  if (state.isOpen()) {
-    msg.reply('predictions are already open. To start a new question, first give a result or refund to end the current one.');
+  if (state.isLive()) {
+    msg.reply('there is already a live prediction. To start a new one, first give a result or refund to end the current one.');
     return;
   }
 

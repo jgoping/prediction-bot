@@ -1,22 +1,32 @@
 const validOutcomes = ['yes', 'no'];
 
+const status = {
+  NONE: 'none',
+  OPEN: 'open',
+  CLOSED: 'closed',
+};
+
 class State {
   constructor() {
-    this.open = false;
+    this.status = status.NONE;
     this.yes = new Map();
     this.no = new Map();
   }
 
   openPredictions() {
-    this.open = true;
+    this.status = status.OPEN;
   }
 
   closePredictions() {
-    this.open = false;
+    this.status = status.CLOSED;
   }
 
   isOpen() {
-    return this.open;
+    return this.status === status.OPEN;
+  }
+
+  isLive() {
+    return this.status !== status.NONE;
   }
 
   addPrediction(id, outcome, amount) {
@@ -48,6 +58,7 @@ class State {
   }
 
   clearPredictions() {
+    this.status = status.NONE;
     this.yes.clear();
     this.no.clear();
   }

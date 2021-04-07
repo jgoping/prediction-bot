@@ -1,6 +1,6 @@
 const result = async (msg, args, model, state) => {
-  if (!state.isOpen()) {
-    msg.reply('predictions are closed at the moment.');
+  if (!state.isLive()) {
+    msg.reply('there is no live prediction at the moment.');
     return;
   }
   
