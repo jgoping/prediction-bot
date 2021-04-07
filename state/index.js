@@ -3,8 +3,8 @@ const validOutcomes = ['yes', 'no'];
 class State {
   constructor() {
     this.open = false;
-    this.yes = [];
-    this.no = [];
+    this.yes = new Map();
+    this.no = new Map();
   }
 
   openPredictions() {
@@ -24,7 +24,9 @@ class State {
       throw new Error('please specify yes or no as an outcome.');
     }
 
-    this[outcome].push({id, amount});
+    const newAmount = this[outcome].has(id) ? this[outcome].get(id).amount + amount : amount;
+
+    this[outcome].set(id, {id, amount: newAmount});
   }
 
   getPredictions(outcome) {
@@ -33,15 +35,15 @@ class State {
     }
 
     if (outcome) {
-      return this[outcome];
+      return this[outcome].values();
     }
 
-    return [...this.yes, ...this.no];
+    return [...this.yes.values(), ...this.no.values()];
   }
 
   clearPredictions() {
-    this.yes = [];
-    this.no = [];
+    this.yes.clear();
+    this.no.clear();
   }
 };
 
