@@ -1,4 +1,4 @@
-const config = require('../../config.json');
+const config = require('../../../config.json');
 
 const register = async (msg, _args, model, _state) => {
   const userExists = await model.isRegistered(msg.author.id)

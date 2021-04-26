@@ -1,4 +1,4 @@
-const config = require('../config.json');
+const config = require('../../config.json');
 
 const mysql = require('mysql');
 const util = require('util');
