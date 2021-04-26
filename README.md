@@ -27,7 +27,7 @@ To add this to your local discord server, there are a few steps:
 1. Create the Discord bot. For instructions to do this, [click here](https://github.com/jgoping/discord-voiceflow-bot#readme) and refer to the "Discord Setup" section. The bot token needs to be set in the `BOT_TOKEN` field of `config.json`.
 2. Create a MySQL database. The password needs to be set in the `DB_PASSWORD` field of `config.json`, and the other fields can be set in the constructor of the class in `models/mysql.js`.
 3. Set the Discord ID of the moderators in the `MOD_LIST` field of `config.json`. For instructions to find a user's Discord ID, [click here](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-).
-4. Clone this repo, run `npm install`, then run the program with `node index.js`.
+4. Clone this repo, run `npm install`, then run the program with `npm start`.
 
 ## Config file options
 In `config.json`, there are some properties that must be set as part of the set up process:
