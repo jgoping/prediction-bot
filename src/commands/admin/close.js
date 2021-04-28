@@ -1,4 +1,4 @@
-const closePredictions = async (msg, _args, _model, state) => {
+const closePredictions = (msg, _args, _model, state) => {
   state.closePredictions()
   msg.channel.send(`Prediction submissions closed! Please wait for the result.`);
 }

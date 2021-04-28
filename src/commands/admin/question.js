@@ -1,4 +1,4 @@
-const openPredictions = async (msg, args, _model, state) => {
+const openPredictions = (msg, args, _model, state) => {
   if (state.isLive()) {
     msg.reply('there is already a live prediction. To start a new one, first give a result or refund to end the current one.');
     return;
