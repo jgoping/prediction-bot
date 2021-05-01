@@ -1,4 +1,8 @@
 # prediction-bot
+
+[![Build Status](https://travis-ci.com/jgoping/prediction-bot.svg?branch=master)](https://travis-ci.com/jgoping/prediction-bot)
+[![Coverage Status](https://coveralls.io/repos/github/jgoping/prediction-bot/badge.svg)](https://coveralls.io/github/jgoping/prediction-bot)
+
 This is a Discord bot to run predictions, inspired by the Twitch prediction system. When added to a server, mods can begin a prediction with the !question command. Users in the server can predict with their points, and a mod can pay-out when the result is given. Users will double their predicted points if they are correct.
 
 This bot is written in Node.js with the discord.js module.
