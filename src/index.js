@@ -8,6 +8,7 @@ bot.commands = new Discord.Collection();
 const model = new Model();
 
 const botCommands = require('./commands');
+const { messageHandler } = require('./utils');
 
 const state = new State();
 
@@ -16,26 +17,7 @@ Object.keys(botCommands).map(key => {
 });
 
 bot.on('message', async (msg) => { 
-  if (msg.author.bot) return;
-  
-  const args = msg.content.split(/ +/);
-  const commandName = args.shift().toLowerCase();
-
-  if (!bot.commands.has(commandName)) return;
-
-  const command = bot.commands.get(commandName);
-  
-  if (command.adminRequired && !config.MOD_LIST.includes(msg.author.id)) {
-    msg.reply('you are not authorized to execute this command.');
-    return;
-  }
-
-  try {
-    command.execute(msg, args, model, state);
-  } catch (error) {
-    console.error(error);
-    msg.reply('There was an error trying to execute that command.');
-  }
+  messageHandler(bot, msg, model, state, config.MOD_LIST);
 });
 
 bot.login(config.BOT_TOKEN);
